@@ -1,9 +1,37 @@
 import { useEffect, useRef, useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 import { Phone, Mail, MapPin, Instagram, ArrowUpRight } from 'lucide-react';
 
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [formValues, setFormValues] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    interest: '',
+    message: '',
+  });
+
+  const whatsappNumber = '27731419668';
+
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setFormValues((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const { firstName, lastName, email, phone, interest, message } = formValues;
+    const whatsappMessage = `Hi Greg, my name is ${firstName} ${lastName}. Am reaching out because I'm interested in ${interest || 'real estate services'}. Here's Phone number ${phone} and Email: ${email}.
+     Message: ${message}`;
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -71,7 +99,7 @@ const ContactSection = () => {
                   <Mail className="w-5 h-5" />
                 </div>
                 <span className="font-body text-lg text-[hsl(var(--fg-light))]">
-                  greg@gregmcdonald.com
+                  greg@theagencygroup.co.za
                 </span>
               </a>
 
@@ -80,7 +108,7 @@ const ContactSection = () => {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <span className="font-body text-lg text-[hsl(var(--fg-light))]">
-                  Your Local Market Area
+                  Cape Town  .Dubai  .Mauritius
                 </span>
               </div>
             </div>
@@ -92,15 +120,18 @@ const ContactSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 border border-[hsl(var(--fg-light)/0.2)] flex items-center justify-center hover:bg-[hsl(var(--fg-light))] hover:text-[hsl(var(--bg-light))] transition-all duration-300"
-              >
+              >            
                 <Instagram className="w-5 h-5" />
               </a>
+                <span className="font-body text-lg text-[hsl(var(--fg-light))]">
+                  Gregory Mc Donald
+                </span>
             </div>
           </div>
 
           {/* Right Column - Form */}
           <div className={`lg:col-span-6 lg:col-start-7 ${isVisible ? 'animate-slide-right delay-300' : 'opacity-0'}`}>
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label className="editorial-subhead text-[hsl(var(--fg-light)/0.6)] block mb-3">
@@ -108,8 +139,11 @@ const ContactSection = () => {
                   </label>
                   <input
                     type="text"
+                    name="firstName"
                     className="w-full bg-transparent border-b border-[hsl(var(--fg-light)/0.2)] py-3 text-[hsl(var(--fg-light))] focus:border-[hsl(40,40%,45%)] focus:outline-none transition-colors font-body"
                     placeholder="John"
+                    value={formValues.firstName}
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
@@ -118,8 +152,11 @@ const ContactSection = () => {
                   </label>
                   <input
                     type="text"
+                    name="lastName"
                     className="w-full bg-transparent border-b border-[hsl(var(--fg-light)/0.2)] py-3 text-[hsl(var(--fg-light))] focus:border-[hsl(40,40%,45%)] focus:outline-none transition-colors font-body"
                     placeholder="Smith"
+                    value={formValues.lastName}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -130,8 +167,11 @@ const ContactSection = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   className="w-full bg-transparent border-b border-[hsl(var(--fg-light)/0.2)] py-3 text-[hsl(var(--fg-light))] focus:border-[hsl(40,40%,45%)] focus:outline-none transition-colors font-body"
                   placeholder="john@example.com"
+                  value={formValues.email}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -141,8 +181,11 @@ const ContactSection = () => {
                 </label>
                 <input
                   type="tel"
+                  name="phone"
                   className="w-full bg-transparent border-b border-[hsl(var(--fg-light)/0.2)] py-3 text-[hsl(var(--fg-light))] focus:border-[hsl(40,40%,45%)] focus:outline-none transition-colors font-body"
                   placeholder="073 141 9668"
+                  value={formValues.phone}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -150,7 +193,12 @@ const ContactSection = () => {
                 <label className="editorial-subhead text-[hsl(var(--fg-light)/0.6)] block mb-3">
                   I'm Interested In
                 </label>
-                <select className="w-full bg-transparent border-b border-[hsl(var(--fg-light)/0.2)] py-3 text-[hsl(var(--fg-light))] focus:border-[hsl(40,40%,45%)] focus:outline-none transition-colors font-body appearance-none cursor-pointer">
+                <select
+                  className="w-full bg-transparent border-b border-[hsl(var(--fg-light)/0.2)] py-3 text-[hsl(var(--fg-light))] focus:border-[hsl(40,40%,45%)] focus:outline-none transition-colors font-body appearance-none cursor-pointer"
+                  name="interest"
+                  value={formValues.interest}
+                  onChange={handleChange}
+                >
                   <option value="">Select an option</option>
                   <option value="buying">Buying a Home</option>
                   <option value="selling">Selling a Home</option>
@@ -165,8 +213,11 @@ const ContactSection = () => {
                 </label>
                 <textarea
                   rows={4}
+                  name="message"
                   className="w-full bg-transparent border-b border-[hsl(var(--fg-light)/0.2)] py-3 text-[hsl(var(--fg-light))] focus:border-[hsl(40,40%,45%)] focus:outline-none transition-colors font-body resize-none"
                   placeholder="Tell me about your real estate goals..."
+                  value={formValues.message}
+                  onChange={handleChange}
                 />
               </div>
 

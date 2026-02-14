@@ -13,6 +13,7 @@ import portraitImage from '@/assets/greg-about.jpg';
 import property1 from '@/assets/property-1.jpg';
 import property2 from '@/assets/property-2.jpg';
 import property3 from '@/assets/property-3.jpg';
+import aboutVideo from '@/assets/THE_AGENCY_GREG.mov';
 
 const properties = [
   {
@@ -52,8 +53,8 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navigation />
       <HeroSection heroImage={heroImage} />
+      <AboutSection portraitImage={portraitImage} aboutVideo={aboutVideo} />
       <StatsSection />
-      <AboutSection portraitImage={portraitImage} />
       <PropertiesSection properties={properties} />
       <TestimonialsSection />
       <ContactSection />
