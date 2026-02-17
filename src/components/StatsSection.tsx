@@ -29,7 +29,7 @@ const StatsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-editorial relative">
+    <section id="stats" ref={sectionRef} className="py-editorial relative">
       <div className="container-editorial">
         {/* Section Header - Asymmetrical */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-16 lg:mb-24">

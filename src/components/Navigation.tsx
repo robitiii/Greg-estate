@@ -68,14 +68,8 @@ const Navigation = () => {
     { label: 'Properties', href: '#properties' },
     {
       label: 'Marketing',
-      href: '#results',
-      submenu: [{ label: 'Video', href: '#marketing-video' }],
+      href: '#stats',
     },
-    // {
-    //   label: 'Meet your Agent',
-    //   href: '#agent',
-    //   submenu: [{ label: 'Video', href: '#agent-video' }],
-    // },
     { label: 'Contact', href: 'https://wa.me/27731419668' },
   ];
 
@@ -142,7 +136,7 @@ const Navigation = () => {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-6">
-            <a href="#contact" className="btn-editorial">
+            <a href="https://wa.me/27731419668" className="btn-editorial">
               Work With Greg
             </a>
             <a
@@ -227,7 +221,7 @@ const Navigation = () => {
           })}
           <div className="mt-8">
             <a
-              href="#contact"
+              href="https://wa.me/27731419668"
               onClick={closeMobileMenu}
               className="btn-editorial-filled"
             >

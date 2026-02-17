@@ -108,7 +108,7 @@ const AboutSection = ({ portraitImage, aboutVideo }: AboutSectionProps) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
           {/* Video Column */}
           <div className="lg:col-span-6 relative">
-            <div className={`relative ${isVisible ? 'animate-slide-left' : 'opacity-0'}`}>
+            <div className={`relative ${isVisible ? 'animate-slide-left' : ''}`}>
               <div className="absolute -top-8 -left-8 w-full h-full border border-[hsl(var(--fg-light)/0.1)]" />
               <div className="relative overflow-hidden rounded-[28px]">
                 <video
@@ -139,15 +139,15 @@ const AboutSection = ({ portraitImage, aboutVideo }: AboutSectionProps) => {
 
           {/* Copy Column */}
           <div className="lg:col-span-5 lg:col-start-8 space-y-6">
-            <span className={`editorial-subhead text-[hsl(40,40%,35%)] block ${isVisible ? 'animate-fade-up delay-200' : 'opacity-0'}`}>
+            <span className={`editorial-subhead text-[hsl(40,40%,35%)] block ${isVisible ? 'animate-fade-up delay-200' : ''}`}>
               The Story
             </span>
-            <h2 className={`section-headline text-[hsl(var(--fg-light))] ${isVisible ? 'animate-fade-up delay-300' : 'opacity-0'}`}>
+            <h2 className={`section-headline text-[hsl(var(--fg-light))] ${isVisible ? 'animate-fade-up delay-300' : ''}`}>
               Local Expert.<br />
               <span className="font-bold">Trusted Advisor.</span>
             </h2>
             <div className={`editorial-divider bg-[hsl(40,40%,45%)] ${isVisible ? 'animate-line-grow delay-400' : 'w-0'}`} />
-            <div className={`space-y-6 ${isVisible ? 'animate-fade-up delay-500' : 'opacity-0'}`}>
+            <div className={`space-y-6 ${isVisible ? 'animate-fade-up delay-500' : ''}`}>
               <p className="body-editorial text-[hsl(var(--fg-light)/0.7)]">
                   Originally from Johannesburg, I relocated to Cape Town 15 years ago, drawn by the vibrant lifestyle and my passion for the outdoors.
                   My enthusiasm for real estate was ignited at a young age, and over the past nine years in the industry, I’ve cultivated a deep love for this profession.
@@ -161,7 +161,7 @@ const AboutSection = ({ portraitImage, aboutVideo }: AboutSectionProps) => {
                   In addition to my expertise in the local market, I have a keen interest in offshore investments and offer support to clients looking to buy or sell property in Mauritius.
               </p>
             </div>
-            <div className={`mt-6 ${isVisible ? 'animate-fade-up delay-600' : 'opacity-0'}`}>
+            <div className={`mt-6 ${isVisible ? 'animate-fade-up delay-600' : ''}`}>
               <a href="#contact" className="btn-editorial border-[hsl(var(--fg-light)/0.3)] text-[hsl(var(--fg-light))] hover:bg-[hsl(var(--fg-light))] hover:text-[hsl(var(--bg-light))]">
                 Get In Touch
               </a>
@@ -181,7 +181,7 @@ const AboutSection = ({ portraitImage, aboutVideo }: AboutSectionProps) => {
               <section
                 key={collection.id}
                 id={collection.id}
-                className={`grid gap-10 lg:grid-cols-12 items-center ${isVisible ? collection.animation : 'opacity-0'}`}
+                className={`grid gap-10 lg:grid-cols-12 items-center ${isVisible ? collection.animation : ''}`}
                 aria-label={`Gallery collection for ${collection.title}`}
               >
                 <div className={`lg:col-span-5 ${textOrder} ${textAlignment}`}>
@@ -206,7 +206,7 @@ const AboutSection = ({ portraitImage, aboutVideo }: AboutSectionProps) => {
                       return (
                         <div
                           key={`${collection.id}-${tile.label}`}
-                          className={`relative w-full ${aspectClass} min-h-[360px] rounded-[28px] border border-[hsl(var(--fg-light)/0.15)] bg-[hsl(var(--fg-light)/0.03)] shadow-[0_25px_60px_rgba(0,0,0,0.25)] overflow-hidden ${isVisible ? animationClass : 'opacity-0'}`}
+                          className={`relative w-full ${aspectClass} min-h-[360px] lg:min-h-[420px] xl:min-h-[520px] rounded-[28px] border border-[hsl(var(--fg-light)/0.15)] bg-[hsl(var(--fg-light)/0.03)] shadow-[0_25px_60px_rgba(0,0,0,0.25)] overflow-hidden ${isVisible ? animationClass : ''}`}
                         >
                           {tile.image && (
                             <img
